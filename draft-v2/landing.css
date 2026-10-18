@@ -1,0 +1,122 @@
+/* ===== Base ===== */
+:root {
+  --primary: #0f2c4c;      /* deep navy */
+  --accent: #f28c28;       /* saffron orange */
+  --accent-dark: #d97414;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --light: #f5f7fa;
+  --white: #ffffff;
+  --radius: 10px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.6;
+}
+a { text-decoration: none; color: inherit; }
+
+.container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--white);
+  padding: 12px 28px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  border: 2px solid var(--accent);
+  transition: background 0.3s, transform 0.2s;
+}
+.btn:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-2px); }
+.btn-outline { background: transparent; border-color: var(--white); }
+.btn-outline:hover { background: var(--white); color: var(--primary); border-color: var(--white); }
+.btn-small { padding: 8px 18px; }
+
+/* ===== Header ===== */
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 0;
+  transition: background 0.3s, padding 0.3s, box-shadow 0.3s;
+}
+.header.scrolled {
+  background: var(--primary);
+  padding: 10px 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+.nav { display: flex; align-items: center; justify-content: space-between; }
+
+.logo { display: flex; align-items: center; gap: 10px; color: var(--white); }
+.logo-mark {
+  background: var(--accent);
+  width: 44px; height: 44px;
+  border-radius: 8px;
+  display: grid; place-items: center;
+  font-weight: 700;
+}
+.logo-text { font-weight: 700; font-size: 1.1rem; line-height: 1.1; transition: color 0.2s; }
+.logo:hover .logo-text { color: var(--accent); } /* same as the Home link hover */
+.logo-text small { display: block; font-weight: 400; font-size: 0.8rem; opacity: 0.85; }
+
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a { color: var(--white); font-weight: 500; }
+.nav-links a:not(.btn):hover { color: var(--accent); }
+
+.menu-toggle { display: none; background: none; border: none; cursor: pointer; }
+.menu-toggle span { display: block; width: 26px; height: 3px; background: var(--white); margin: 5px 0; border-radius: 2px; }
+
+/* ===== Hero ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  color: var(--white);
+  background:
+    linear-gradient(90deg, rgba(15, 44, 76, 0.95) 0%, rgba(15, 44, 76, 0.75) 45%, rgba(15, 44, 76, 0.25) 100%),
+    url('images/demolition-hammer.jpg') right center/cover no-repeat;
+  padding: 120px 0 60px;
+}
+.hero-tag {
+  display: inline-block;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+.hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1.2; margin-bottom: 20px; }
+.hero h1 span { color: var(--accent); }
+.hero-sub { max-width: 600px; font-size: 1.1rem; opacity: 0.9; margin-bottom: 32px; }
+.hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.hero-stats { display: flex; gap: 48px; margin-top: 60px; flex-wrap: wrap; }
+.hero-stats strong { display: block; font-size: 2rem; color: var(--accent); }
+.hero-stats span { font-size: 0.9rem; opacity: 0.85; }
+
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+  .menu-toggle { display: block; }
+  .nav-links {
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--primary);
+    flex-direction: column;
+    padding: 20px 0;
+    gap: 18px;
+    display: none;
+  }
+  .nav-links.open { display: flex; }
+  .header { background: var(--primary); }
+  .hero { background:
+    linear-gradient(rgba(15, 44, 76, 0.85), rgba(15, 44, 76, 0.85)),
+    url('images/demolition-hammer.jpg') center/cover no-repeat; }
+  .hero-stats { gap: 28px; }
+}
